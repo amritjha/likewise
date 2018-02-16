@@ -1,0 +1,52 @@
+<% include partials/header %>
+<link rel="stylesheet" type="text/css" href="/stylesheets/home-page-stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/auth-stylesheet.css">
+</head>
+<body>
+    <div class="home-page-container">       
+        <h1>likewise</h1>
+        <h4>"a social networking site"</h4>
+        <br/><br/>
+        <div class="auth-form-container">
+            <form method="get" action="/login">
+                <div class="ui large form">
+                    <div class="field">
+                        <input placeholder="Username" type="text" name="username">
+                    </div>          
+                    <div class="field">
+                        <input placeholder="Password" type="password" name="password">
+                    </div>
+                    <div class="form-button">
+                        <button class="ui submit button" id="login" type="submit">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="auth-form-container">
+            <form method="post" action="/signup">
+                <div class="ui large form">
+                    <div class="two fields">
+                        <div class="field">              
+                            <input placeholder="First Name" type="text" name="firstname">
+                        </div>
+                        <div class="field">
+                            <input placeholder="Last Name" type="text" name="lastname">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <input placeholder="Username" type="text" name="username">
+                    </div>
+                    <div class="field">
+                        <input placeholder="Email ID" type="email" name="email">
+                    </div>
+                    <div class="field">
+                        <input placeholder="Password" type="password" name="password">
+                    </div>
+                    <div class="form-button">
+                        <button class="ui submit button" id="signup" type="submit">Sign up</button>
+                    </div>
+                </div>
+            </form>
+        </div>          
+    </div>
+<% include partials/footer %>

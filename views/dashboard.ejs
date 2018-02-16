@@ -1,0 +1,18 @@
+<% include partials/header %>
+<link rel="stylesheet" type="text/css" href="/stylesheets/dashboard-stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/scripts/dashboard-script.css">
+</head>
+<body> 
+<div class="dashboard-container">
+    <div class="ui secondary pointing menu">
+      <a class="active item">Dashboard</a>
+      <a class="item">Profile</a>
+      <a class="item">Messages</a>
+      <div class="right menu">
+        <a href="/logout" class="ui item">Logout</a>
+      </div>
+    </div>
+    <h3>This is the dashboard page</h3>
+    <a href="dashboard/newpost"><button class="ui submit button" id="new-post">New Post</button></a>
+</div>
+<% include partials/footer %>

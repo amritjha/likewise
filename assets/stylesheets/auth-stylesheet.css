@@ -1,0 +1,15 @@
+.auth-form-container {
+    vertical-align: top;
+    width: 30%;
+    display: inline-block;
+}
+.form-button {
+    margin: 0px auto;
+    text-align: center;
+}
+#signup, #login {
+    background: #000;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 20px;
+}
