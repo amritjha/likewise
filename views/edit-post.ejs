@@ -1,0 +1,11 @@
+<% include partials/header %>
+    <form class="ui form" method="post" action="/posts/<%= post._id %>/?_method=PUT">
+      <div class="field">
+        <input type="text" name="post[title]" value="<%= post.title %>" />
+      </div>
+      <div class="field">
+        <textarea style="max-height: 131px;" name="post[textContent]"><%= post.textContent %></textarea>
+      </div>
+      <button class="ui submit button" id="edit-post" type="submit">Update Post</button>
+    </form>
+<% include partials/footer %>

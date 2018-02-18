@@ -1,0 +1,28 @@
+<% include partials/header %>
+    <h1><%= post.title %></h1>
+    <h4><%= post.textContent %></h4>
+    <h4><em>Posted by: <%= post.author.username %></em></h4>
+    <% post.comments.forEach(function(comment){ %>
+        <p><strong><%=  comment.author.username %></strong> - <%=  comment.text %></p>
+        <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+            <a href="/posts/<%= post._id%>/comments/<%= comment._id%>/edit">
+                <button class="ui orange tiny button" class="edit-comment">Edit</button>
+            </a>
+            <form method="post" action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE">
+                <button class="ui red button" type="submit">Delete</button>
+            </form>
+        <% } %>
+    <% }); %>
+    <% if(currentUser && post.author.id.equals(currentUser._id)) { %>
+    <a href="/posts/<%= post._id %>/edit"><button class="ui orange button" id="edit-post">Edit post</button></a> 
+    <form method="post" action="/posts/<%= post._id %>?_method=DELETE">
+        <button class="ui red button" id="delete-post" type="submit">Delete post</button>
+    </form>
+    <% } %>
+    <form class="ui form" method="post" action="/posts/<%= post._id%>/comments">
+      <div class="field">
+        <input type="text" name="comment[text]" placeholder="Write a comment" />
+      </div>
+      <button class="ui submit button" id="new-comment" type="submit">Comment</button>
+    </form>
+<% include partials/footer %>

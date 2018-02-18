@@ -8,10 +8,18 @@ var express = require("express"),
     passportLocalMongoose = require("passport-local-mongoose"),
     flash = require("connect-flash"),
     app = express(),
-    User = require("./models/user");
+    Comment = require("./models/comment"),
+    Post = require("./models/post"),
+    User = require("./models/user"),
+    seedDB = require("./seed");
+
+var commentsRoutes = require("./routes/comments"),
+    postsRoutes = require("./routes/posts"),
+    indexRoutes = require("./routes/index");
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/assets"));
+app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSession({
     secret: "secret auth statment for likewise",
@@ -24,62 +32,21 @@ passport.use(new passportLocal(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/likewise");
+// seedDB();
 
-app.get("/", function(req, res) {
-    res.render("home");
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
 });
 
-app.get("/login", passport.authenticate("local", {
-        successRedirect: "/dashboard",
-        failureRedirect: "/"
-    }), function(req, res) {
-});
-
-app.post("/signup", function(req, res) {
-    var newUser = {
-        firstName: req.body.firstname, 
-        lastName: req.body.lastname, 
-        username: req.body.username,
-        email: req.body.email
-    };
-    User.register(new User(newUser), req.body.password, function(err, user) {
-        if(err) {
-            console.log(err);
-            return res.render("home");
-        }
-        passport.authenticate("local")(req, res, function() {
-            res.redirect("/dashboard");
-        });
-    });
-});
-
-app.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/");
-});
-
-app.get("/dashboard", isLoggedIn, function(req, res) {
-    res.render("dashboard");
-});
-
-
-app.post("/dashboard", isLoggedIn, function(req, res) {
-    var post = req.body.post;
-    posts.push(post);
-    res.redirect("/dashboard");
-});
+app.use("/", indexRoutes);
+app.use("/", postsRoutes);
+app.use("/", commentsRoutes);
 
 app.get("*", function(req, res) {
     res.render("page-not-found");
 });
-
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) 
-        return next();
-    res.redirect("/login");
-}
 
 app.listen(4321, function() {
     console.log("serving likewise on http://127.0.0.1:4321");

@@ -1,0 +1,8 @@
+<% include partials/header %>
+<form class="ui form" method="post" action="/posts/<%= post_id %>/comments/<%= comment._id %>?_method=PUT">
+  <div class="field">
+    <input type="text" name="comment[text]" value="<%= comment.text %>" />
+  </div>
+  <button class="ui submit button" type="submit">Update Comment</button>
+</form>
+<% include partials/footer %>

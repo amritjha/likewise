@@ -12,7 +12,23 @@
         <a href="/logout" class="ui item">Logout</a>
       </div>
     </div>
-    <h3>This is the dashboard page</h3>
-    <a href="dashboard/newpost"><button class="ui submit button" id="new-post">New Post</button></a>
+    <div class="dashboard">
+        <div class="all-posts">
+            <% posts.forEach(function(post){ %>
+                <h1><%= post.title %></h1>
+                <h4><%= post.textContent %></h4>
+                <p><a href="/posts/<%= post._id %>">See Post</a></p>
+            <% }); %>
+        </div>
+        <form class="ui form" method="post" action="/newpost">
+          <div class="field">
+            <input type="text" name="newpost_title" />
+          </div>
+          <div class="field">
+            <textarea style="max-height: 131px;" name="newpost_text"></textarea>
+          </div>
+          <button class="ui submit button" id="new-post" type="submit">New Post</button>
+        </form>
+    </div>
 </div>
 <% include partials/footer %>
