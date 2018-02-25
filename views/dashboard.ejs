@@ -8,6 +8,8 @@
       <a class="active item">Dashboard</a>
       <a class="item">Profile</a>
       <a class="item">Messages</a>
+      <a class="item">Notifications</a>
+      <a class="item" href="/connections">Connections</a>
       <div class="right menu">
         <a href="/logout" class="ui item">Logout</a>
       </div>
@@ -29,6 +31,15 @@
           </div>
           <button class="ui submit button" id="new-post" type="submit">New Post</button>
         </form>
+        <br>
+        <form class="ui form" method="post" action="/request-connection">
+            <div class="field">
+                <input type="text" name="req_conn_username" />
+            </div>
+            <br/>
+            <button class="ui submit button" id="req-conn" type="submit">Send connection request</button>
+        </form>
+        <br>   
     </div>
 </div>
 <% include partials/footer %>

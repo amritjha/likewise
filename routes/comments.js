@@ -15,7 +15,6 @@ router.post("/posts/:id/comments", middleware.isLoggedIn, function(req, res) {
                     comment.author.username = req.user.username;
                     comment.save();
                     post.comments.push(comment);
-                    post.save();
                     res.redirect("/posts/" + post._id);
                 }
             });

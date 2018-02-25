@@ -1,0 +1,29 @@
+<% include partials/header %>
+</head>
+<body> 
+    <div class="connections-page-container">
+        <div class="connections">
+            <div class="requests-received">
+                <h3>Your Connections: </h3>
+                <% user.allConnections.forEach(function(connection) { %>
+                    <p><%= connection.firstName %>&nbsp<%= connection.lastName %></p>
+                <% }); %>
+            </div>
+            <br/>
+            <div class="requests-received">
+                <h3>Connections requested to you: </h3>
+                <% user.connectionRequestsReceived.forEach(function(connection) { %>
+                    <p><%= connection.firstName %>&nbsp<%= connection.lastName %></p>
+                <% }); %>
+            </div>
+            <br/>
+            <div class="requests-sent">
+                <h3>Connections requested by you: </h3>
+                <% user.connectionRequestsSent.forEach(function(connection) { %>
+                    <p><%= connection.firstName %>&nbsp<%= connection.lastName %></p>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</body>
+<% include partials/footer %>

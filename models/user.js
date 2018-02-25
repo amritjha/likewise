@@ -6,7 +6,19 @@ var userSchema = new mongoose.Schema({
     lastName: String,
     username: String,
     email: String,
-    password: String
+    password: String,
+    connectionRequestsReceived: [ {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    } ],
+    connectionRequestsSent: [ {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    } ],
+    allConnections: [ {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    } ]
 });
 
 userSchema.plugin(passportLocalMongoose);

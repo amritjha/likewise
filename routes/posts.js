@@ -62,21 +62,4 @@ router.delete("/posts/:id", middleware.checkPostOwnership, function(req, res) {
     });
 });
 
-/*
-function checkPostOwnership(req, res, next) {
-    if(req.isAuthenticated()) {
-        Post.findById(req.params.id, function(err, resultPost) {
-            if(!err) {
-                if(resultPost.author.id.equals(req.user._id)) {
-                    next();
-                } else {
-                    res.redirect("back");
-                }
-            }
-        });    
-    } else {
-        res.redirect("back");
-    }
-}*/
-
 module.exports = router;

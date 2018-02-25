@@ -15,6 +15,7 @@ var express = require("express"),
 
 var commentsRoutes = require("./routes/comments"),
     postsRoutes = require("./routes/posts"),
+    connectionsRoutes = require("./routes/connections"),
     indexRoutes = require("./routes/index");
 
 app.set("view engine", "ejs");
@@ -43,6 +44,7 @@ app.use(function(req, res, next) {
 app.use("/", indexRoutes);
 app.use("/", postsRoutes);
 app.use("/", commentsRoutes);
+app.use("/", connectionsRoutes);
 
 app.get("*", function(req, res) {
     res.render("page-not-found");
